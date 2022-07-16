@@ -1,0 +1,16 @@
+// ...
+/*BS*/import { BookStoreService } from '../../shared/book-store.service';/*BE*/
+
+@Component({ /* ... */ })
+export class BookListComponent {
+  books: Book[] = [];
+  @Output() selectBook = new EventEmitter<Book>();
+
+  constructor(/*BS*/private service: BookStoreService/*BE*/) {
+    /*BS*/this.books = this.service.getAll();/*BE*/
+  }
+
+  doSelect(book: Book) {
+    this.selectBook.emit(book);
+  }
+}
